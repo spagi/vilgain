@@ -1,0 +1,456 @@
+{
+	"info": {
+		"_postman_id": "9c43fe8f-4405-40ba-9456-e98808546ce3",
+		"name": "Vilgain",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Registration",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"readerFranta@example.com\",\n    \"password\": \"password123\",\n    \"name\": \"Test Author\",\n    \"role\": \"ROLE_ADMIN\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8088/auth/register",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8088",
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDg0MjI0OTUsImV4cCI6MTc0ODQyNjA5NSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJ1c2VybmFtZSI6ImpzdHJuYWRlbEBnbWFpbC5jb20ifQ.X6XFvDw1A66FYlugZo3Nkg-t_nvtwFwUHelD_ckKnpdzchHg3vaFNcKcFe1nd3KMFDCGnYRBzp4xlmmpmDr39s-yIxXmbFGfE5GzbBcphm05SZqzdoD7fNicZz4SfPn3qrFpdbxDFuaIFrhBnWfX-R2UcZPP3yIvftuC8lAkJQg-tIpeUhknGqxfQcCUVYbjy9U1b7ojFryOfOlz--cCxoWN1C2WsBQav6OUPt_MFAI_0ScwudMd0LYHpIDNxRoBW9_tqtWa26tcUJ9baoY64s2Es5Pr2g9qq6OjZ8mkQJfJyElb9K6VkqDyoLGGyoSYMcXhY44lMqwp9umG_kZSCg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"readerFranta@example.com\",\n    \"plainPassword\": \"password123\",\n    \"name\": \"Franta Author\",\n    \"role\": \"ROLE_READER\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8088/users",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8088",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDg0MjE4NzgsImV4cCI6MTc0ODQyNTQ3OCwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJ1c2VybmFtZSI6ImpzdHJuYWRlbEBnbWFpbC5jb20ifQ.T7yQVOfn2-d3E9KECLF7o_K0FvFnEmlKARDM63qS2Wq49xx9y4o8di2XUZBLjv1AvHHvsdEMsMa2X2KRwwYzjPniMK96OSwoG1gxW_riIf8QCFYwfC72hF-GtVgy2qwMzrccMHkyyGx_519vCF2sqq7-4T2i5iZq4B9SwOLrJ0-tTHQ1vqIP_js9jds64MAZMGMinbW5t1JhLupxprQ2W5-sBMOOC_6o3-Q6JplWg2inwqW6llnlPove_C7pSH1R6IbzImZ1brLhpp0w4cVEqaQw0lOF0WjB17kqeUa6Jy1A5-eMI3kXTRSMHr-tg0BmP01YUPnVLyzm649ZQL6G_A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"reader@example.com\",\n    \"plainPassword\": \"password123\",\n    \"name\": \"Karel Reader\",\n    \"role\": \"ROLE_READER\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8088/users/4",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8088",
+					"path": [
+						"users",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"readerFranta@example.com\",\n    \"password\": \"password123\"    \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8088/auth/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8088",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDg0MjI0OTUsImV4cCI6MTc0ODQyNjA5NSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJ1c2VybmFtZSI6ImpzdHJuYWRlbEBnbWFpbC5jb20ifQ.X6XFvDw1A66FYlugZo3Nkg-t_nvtwFwUHelD_ckKnpdzchHg3vaFNcKcFe1nd3KMFDCGnYRBzp4xlmmpmDr39s-yIxXmbFGfE5GzbBcphm05SZqzdoD7fNicZz4SfPn3qrFpdbxDFuaIFrhBnWfX-R2UcZPP3yIvftuC8lAkJQg-tIpeUhknGqxfQcCUVYbjy9U1b7ojFryOfOlz--cCxoWN1C2WsBQav6OUPt_MFAI_0ScwudMd0LYHpIDNxRoBW9_tqtWa26tcUJ9baoY64s2Es5Pr2g9qq6OjZ8mkQJfJyElb9K6VkqDyoLGGyoSYMcXhY44lMqwp9umG_kZSCg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8088/users",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8088",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDg0MjI0OTUsImV4cCI6MTc0ODQyNjA5NSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJ1c2VybmFtZSI6ImpzdHJuYWRlbEBnbWFpbC5jb20ifQ.X6XFvDw1A66FYlugZo3Nkg-t_nvtwFwUHelD_ckKnpdzchHg3vaFNcKcFe1nd3KMFDCGnYRBzp4xlmmpmDr39s-yIxXmbFGfE5GzbBcphm05SZqzdoD7fNicZz4SfPn3qrFpdbxDFuaIFrhBnWfX-R2UcZPP3yIvftuC8lAkJQg-tIpeUhknGqxfQcCUVYbjy9U1b7ojFryOfOlz--cCxoWN1C2WsBQav6OUPt_MFAI_0ScwudMd0LYHpIDNxRoBW9_tqtWa26tcUJ9baoY64s2Es5Pr2g9qq6OjZ8mkQJfJyElb9K6VkqDyoLGGyoSYMcXhY44lMqwp9umG_kZSCg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8088/users/3",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8088",
+					"path": [
+						"users",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDg0MTIwMTUsImV4cCI6MTc0ODQxNTYxNSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJ1c2VybmFtZSI6ImpzdHJuYWRlbEBnbWFpbC5jb20ifQ.CxSp-ZDeqx9adruNoAVweI6t0CyH1EZqf84OOBumMdOjOd_u3hDUYG7Ukba1qlboi6N3kohovI8CYFash-GHKPSYIRgrxVuuCC60pzmz-tnmC8Gheu9LAHeNeRud-UYcdKNv3gVl-nhcwhnzDG0PKLY9DaM517JdzTWNvPQm_CWGrt20-v4A901F_uxrKV7N8SGJFnADlRJZD4f3L9ufNx_-F31J4wD1jRCxB7nAt5LUhC79SGiEF5uvaueAy_QW2uDeQaYuu13go1lTJ_ed659QLIxT_rujNtq413Q4LJh9XHBm0KLrrgioMIevmG3ERJU12_0IvbfdWG1Wf2zisA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8088/users/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8088",
+					"path": [
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Articles",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDg0MzYzMTEsImV4cCI6MTc0ODQzOTkxMSwicm9sZXMiOlsiUk9MRV9BVVRIT1IiLCJST0xFX1VTRVIiXSwidXNlcm5hbWUiOiJ0ZXN0YXV0aG9yQGV4YW1wbGUuY29tIn0.gzLHeuap6C5uZOzZUZQafj6CLP1t-b2e8cUsvRr4ncP1vc6rTyWYG2oMosb8T2aJZKy7xAWKtZJXZ_tXXW-01GDZAdw0m1knUXahrXU8N7uNvE_ySQ69CHfQFUzn8_bL8sUUwH6AGAtaDIvkcc5bWsG6U0zPw_OrmQDjXqqiC-QyadHe6JSctlqp-AZgwOwxwRtFJ95MMj1JSNAbseIPPOABqQsgPt8MFvKCx79iKPUZIb9c4erKsHrTBEET28NkjcwlYtbXJrvlgsBnjkhdIGiOeaMegaj2AKaq6bieTGkl3H0VDXwRoBLdqON9f12aJBRiHkIbI108b7gRFOysWw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8088/articles",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8088",
+					"path": [
+						"articles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Article",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDg0MjYxMzEsImV4cCI6MTc0ODQyOTczMSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJ1c2VybmFtZSI6ImpzdHJuYWRlbEBnbWFpbC5jb20ifQ.Wo1QmaA-8fSKdosiKBfoNwKmG00DmUS3ovxox438x788T1FOVTWqktfk1W0D1vdzrlofKjQdfagGst6MufX1d4HzSrRZq8Oj8yamuz30Bcu8NEg6BlK6h1IiiZ7gLkd6q6UzM9s9oSOwn4iiyL2XEqj0_luVBCLBCqmvToK9HaEsPa5l3fZ-XJRrmAn1f2eF4LiTLNtCYD0h3VzZVjTsu8LBw4hCYhkWsmXDm9C6aI1UyDh-dvSORfHpu89Oy-bo_bHv1fGQDMZ64D_VPxqTxeuUwUrrLVDYsl4pFJ-NA-GSQ8xnJswabB8nDQ7lt8VCZeo5CkJOTPYjx6C_ThzzbQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"title\": \"Můj nový článek\",\n    \"content\": \"Toto je obsah mého úžasného nového článku.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8088/articles",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8088",
+					"path": [
+						"articles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Article",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDg0MzYzMTEsImV4cCI6MTc0ODQzOTkxMSwicm9sZXMiOlsiUk9MRV9BVVRIT1IiLCJST0xFX1VTRVIiXSwidXNlcm5hbWUiOiJ0ZXN0YXV0aG9yQGV4YW1wbGUuY29tIn0.gzLHeuap6C5uZOzZUZQafj6CLP1t-b2e8cUsvRr4ncP1vc6rTyWYG2oMosb8T2aJZKy7xAWKtZJXZ_tXXW-01GDZAdw0m1knUXahrXU8N7uNvE_ySQ69CHfQFUzn8_bL8sUUwH6AGAtaDIvkcc5bWsG6U0zPw_OrmQDjXqqiC-QyadHe6JSctlqp-AZgwOwxwRtFJ95MMj1JSNAbseIPPOABqQsgPt8MFvKCx79iKPUZIb9c4erKsHrTBEET28NkjcwlYtbXJrvlgsBnjkhdIGiOeaMegaj2AKaq6bieTGkl3H0VDXwRoBLdqON9f12aJBRiHkIbI108b7gRFOysWw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"title\": \"Můj nový článek po update\",\n   \"content\": \"Toto je obsah mého úžasného nového článku.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8088/articles/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8088",
+					"path": [
+						"articles",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Article",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDg0MjY1NjMsImV4cCI6MTc0ODQzMDE2Mywicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJ1c2VybmFtZSI6ImpzdHJuYWRlbEBnbWFpbC5jb20ifQ.hk7FfGTWCZISiapUINdy1XFFnuxCI3_pQ1sYFKI55agx_RWHWJ65Iob0C2Vv159krDRDNSBU829TMbowTUnd6J1eWrgs-Hmh7irrlhagqD0d_WcaIC9oow9LC8fcZEB7e2WzFNhUBjhMTr0IZwUEJWRfa1lesWucuBISmWyZKTx3W3cNYtUGGFUpynxh4u84uS-eb70JWsjFueDtX63m1U24Hr-aQuB6BHPcqsfnVrn_iEWh8kCFHI2yWyLnSRKaPzuz1--2suly96TKZpezdUmiC8QKk_BVQhXk2PRhexWUe6tJsB-aJRWBB8rgFCwmdq-DKhlgszTg5Nd9YRjF0A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8088/articles/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8088",
+					"path": [
+						"articles",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
