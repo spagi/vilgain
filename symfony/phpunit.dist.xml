@@ -1,34 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<!-- https://phpunit.readthedocs.io/en/latest/configuration.html -->
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
-         backupGlobals="false"
-         colors="true"
-         failOnNotice="true"
-         failOnWarning="true"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd"
          bootstrap="tests/bootstrap.php"
-         cacheDirectory=".phpunit.cache"
->
-    <php>
-        <ini name="display_errors" value="1" />
-        <ini name="error_reporting" value="-1" />
-        <server name="APP_ENV" value="test" force="true" />
-        <server name="SHELL_VERBOSITY" value="-1" />
-    </php>
-
+         colors="true">
     <testsuites>
         <testsuite name="Project Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
+    <php>
+        <ini name="display_errors" value="1"/>
+        <ini name="error_reporting" value="-1"/>
+        <env name="APP_ENV" value="test" force="true"/>
+        <env name="APP_DEBUG" value="1"/>
+        <env name="APP_SECRET" value="s$cretf0rt3st"/>
+        <env name="SHELL_VERBOSITY" value="-1"/>
+        <env name="KERNEL_CLASS" value="App\Kernel" force="true"/>
+        <env name="DATABASE_URL" value="sqlite:///%kernel.project_dir%/var/test_data.db" force="true"/>
+<!--        <env name="DATABASE_URL" value="sqlite:///:memory:" force="true"/>-->
 
-    <source ignoreSuppressionOfDeprecations="true" restrictNotices="true" restrictWarnings="true">
-        <include>
-            <directory>src</directory>
-        </include>
-    </source>
+        <env name="JWT_SECRET_KEY" value="%kernel.project_dir%/config/jwt/private.pem"/>
+        <env name="JWT_PUBLIC_KEY" value="%kernel.project_dir%/config/jwt/public.pem"/>
+        <env name="JWT_PASSPHRASE" value="0c25314761ecc3eaa0491387153c7375acad29699e2d414d340c952a1fbaa119"/>
+    </php>
 
-    <extensions>
-    </extensions>
+    <listeners>
+        <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener"/>
+    </listeners>
+
 </phpunit>

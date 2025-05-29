@@ -1,0 +1,10 @@
+App\Entity\Article:
+  article_1_admin:
+    title: 'Admin First Article'
+    content: 'Content of the first article by admin.'
+    author: '@user_admin'
+
+  article_2_author:
+    title: 'Author One Article'
+    content: 'Content of the article by author one.'
+    author: '@user_author_1'

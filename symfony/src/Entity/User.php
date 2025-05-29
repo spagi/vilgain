@@ -90,7 +90,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Groups(['user:read', 'user:write'])]
     private UserRole $role = UserRole::READER; // Default role
 
-    #[ORM\OneToMany(mappedBy: 'author_id', targetEntity: Article::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'author', targetEntity: Article::class, orphanRemoval: true)]
     private Collection $articles;
 
     private ?LoggerInterface $logger = null; // Přidej jako property

@@ -1,0 +1,18 @@
+App\Entity\User:
+  user_admin:
+    email: 'admin@example.com'
+    name: 'Admin User'
+    plainPassword: 'heslo'
+    role: !php/enum App\Entity\UserRole::ADMIN # Použití PHP enum syntaxe pro Alice
+
+  user_author_1:
+    email: 'author1@example.com'
+    name: 'Author One'
+    plainPassword: 'heslo'
+    role: !php/enum App\Entity\UserRole::AUTHOR
+
+  user_reader_1:
+    email: 'reader1@example.com'
+    name: 'Reader One'
+    plainPassword: 'heslo'
+    role: !php/enum App\Entity\UserRole::READER
