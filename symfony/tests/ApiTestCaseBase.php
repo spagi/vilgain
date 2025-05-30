@@ -6,53 +6,67 @@ namespace App\Tests;
 
 use ApiPlatform\Symfony\Bundle\Test\ApiTestCase;
 use ApiPlatform\Symfony\Bundle\Test\Client;
+use App\DataFixtures\ArticleFixtures;
+use App\DataFixtures\UserFixtures;
 use App\Entity\User;
 use App\Entity\UserRole;
+use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
+use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\ORM\EntityManagerInterface;
-use Hautelook\AliceBundle\PhpUnit\RefreshDatabaseTrait;
-use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
-use phpDocumentor\Reflection\Types\Self_;
+use Doctrine\ORM\Tools\SchemaTool;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 abstract class ApiTestCaseBase extends ApiTestCase
 {
-    use ReloadDatabaseTrait;
 
     protected ?EntityManagerInterface $entityManager;
     protected ?UserPasswordHasherInterface $passwordHasher;
+    private ?ORMExecutor $fixtureExecutor = null;
+    private array $fixtures = [];
+
     protected ?Client $client;
 
     protected static EntityManagerInterface $staticEntityManager;
 
-    public static function setUpBeforeClass(): void
-    {
-        parent::setUpBeforeClass();
-        self::bootKernel();
-
-        self::$staticEntityManager = self::getContainer()->get(EntityManagerInterface::class);
-        $schemaTool = new \Doctrine\ORM\Tools\SchemaTool(self::$staticEntityManager);
-        $metadatas = self::$staticEntityManager->getMetadataFactory()->getAllMetadata();
-
-        try {
-            error_log("Attempting to drop and create schema for tests...");
-            $schemaTool->dropDatabase();
-            $schemaTool->createSchema($metadatas);
-            error_log("Schema created successfully for tests.");
-        } catch (\Exception $e) {
-            error_log("Error creating schema for tests: " . $e->getMessage());
-            throw $e;
-        }
-    }
 
     protected function setUp(): void
     {
-       parent::setUp();
 
+        self::bootKernel(['environment' => 'test']);
+        $container = self::getContainer();
+        $userFixtures = $container->get(UserFixtures::class);
+        $articleFixtures = $container->get(ArticleFixtures::class);
         $this->entityManager = self::getContainer()->get(EntityManagerInterface::class);
         $this->passwordHasher = self::getContainer()->get(UserPasswordHasherInterface::class);
         $this->client =self::createClient([], [
             'base_uri' => 'http://127.0.0.1:8088',
         ]);
+
+        $schemaTool = new SchemaTool($this->entityManager);
+        $metadatas = $this->entityManager->getMetadataFactory()->getAllMetadata();
+
+        $schemaTool->dropSchema($metadatas); // Může vyhodit výjimku, pokud schéma neexistuje, obal do try-catch
+        try {
+            $schemaTool->dropSchema($metadatas);
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
+        $schemaTool->createSchema($metadatas);
+
+        if ($this->fixtureExecutor === null) {
+
+            $this->fixtures = [
+                $userFixtures,
+                $articleFixtures,
+            ];
+
+            $purger = new ORMPurger($this->entityManager);
+
+            $purger->setPurgeMode(ORMPurger::PURGE_MODE_DELETE);
+            $this->fixtureExecutor = new ORMExecutor($this->entityManager, $purger);
+        }
+
+        $this->fixtureExecutor->execute($this->fixtures, false);
     }
 
     protected function createUser(string $email, string $plainPassword, UserRole $role, string $name = 'Test User'): User
